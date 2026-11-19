@@ -1,0 +1,95 @@
+name: Actualizar clima
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # cada hora
+  workflow_dispatch:       # botón "Run workflow" para correrlo a mano
+  push:
+    paths:
+      - ciudades.txt       # también corre cuando editás la lista de ciudades
+
+permissions:
+  contents: write
+
+jobs:
+  clima:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descargar clima de Open-Meteo
+        run: |
+          python3 - <<'EOF'
+          import json, os, re, unicodedata, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+
+          API = "https://api.open-meteo.com/v1/forecast"
+          os.makedirs("api", exist_ok=True)
+          indice = []
+
+          for linea in open("ciudades.txt", encoding="utf-8"):
+              linea = linea.strip()
+              if not linea or linea.startswith("#"):
+                  continue
+              nombre, lat, lon = [p.strip() for p in linea.split(";")]
+              slug = unicodedata.normalize("NFKD", nombre).encode("ascii", "ignore").decode().lower()
+              slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-")
+
+              params = {
+                  "latitude": lat, "longitude": lon, "timezone": "auto", "forecast_days": 7,
+                  "current": "temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,is_day",
+                  "daily": "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,sunrise,sunset,uv_index_max",
+              }
+              with urllib.request.urlopen(API + "?" + urllib.parse.urlencode(params), timeout=30) as r:
+                  d = json.load(r)
+
+              c, dd = d["current"], d["daily"]
+              salida = {
+                  "ciudad": nombre,
+                  "latitud": float(lat),
+                  "longitud": float(lon),
+                  "zona_horaria": d.get("timezone"),
+                  "actualizado": c["time"],
+                  "actual": {
+                      "temperatura_c": c["temperature_2m"],
+                      "sensacion_termica_c": c["apparent_temperature"],
+                      "humedad_pct": c["relative_humidity_2m"],
+                      "precipitacion_mm": c["precipitation"],
+                      "viento_kmh": c["wind_speed_10m"],
+                      "viento_direccion_grados": c["wind_direction_10m"],
+                      "codigo_clima": c["weather_code"],
+                      "es_de_dia": bool(c["is_day"]),
+                  },
+                  "pronostico": [
+                      {
+                          "fecha": dd["time"][i],
+                          "codigo_clima": dd["weather_code"][i],
+                          "max_c": dd["temperature_2m_max"][i],
+                          "min_c": dd["temperature_2m_min"][i],
+                          "lluvia_mm": dd["precipitation_sum"][i],
+                          "prob_lluvia_pct": dd["precipitation_probability_max"][i],
+                          "uv_max": dd["uv_index_max"][i],
+                          "amanecer": dd["sunrise"][i],
+                          "atardecer": dd["sunset"][i],
+                      }
+                      for i in range(len(dd["time"]))
+                  ],
+                  "fuente": "Open-Meteo.com",
+              }
+              with open(f"api/{slug}.json", "w", encoding="utf-8") as f:
+                  json.dump(salida, f, ensure_ascii=False, indent=2)
+              indice.append({"ciudad": nombre, "slug": slug, "latitud": float(lat), "longitud": float(lon), "url": f"api/{slug}.json"})
+              print("OK", nombre)
+
+          with open("api/ciudades.json", "w", encoding="utf-8") as f:
+              json.dump({"generado_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"), "ciudades": indice},
+                        f, ensure_ascii=False, indent=2)
+          EOF
+
+      - name: Guardar cambios
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add api
+          git diff --cached --quiet || git commit -m "Actualizar clima"
+          git push
