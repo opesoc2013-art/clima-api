@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Qué tal el clima?</title>
+<meta name="description" content="Clima actual y pronóstico de cualquier ciudad.">
+<meta name="theme-color" content="#2b6cb0">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+<!-- Vista previa al compartir (WhatsApp, Facebook, X, Telegram). Si cambiás el nombre del repo, cambiá estas direcciones. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="¿Qué tal el clima?">
+<meta property="og:title" content="¿Qué tal el clima?">
+<meta property="og:description" content="Clima actual y pronóstico de 7 días de cualquier ciudad. Creada por DFF.">
+<meta property="og:url" content="https://opesoc2013-art.github.io/clima-api/">
+<meta property="og:image" content="https://opesoc2013-art.github.io/clima-api/icons/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sol y nube con el título ¿Qué tal el clima?">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opesoc2013-art.github.io/clima-api/icons/og-image.jpg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="¿Qué tal el clima?">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1><img src="icons/icon-192.png" alt="" class="logo">¿Qué tal el clima?</h1>
+  <div class="acciones">
+    <button id="btnTema" class="icono" type="button" title="Cambiar tema">🌓</button>
+    <button id="btnInstalar" class="primario" type="button">⬇ Descargar app</button>
+  </div>
+</header>
+
+<main>
+  <form id="buscador" autocomplete="off" role="search">
+    <input id="q" type="search" placeholder="Buscá una ciudad…" aria-label="Buscar ciudad">
+    <button id="btnUbicacion" class="icono" type="button" title="Usar mi ubicación">📍</button>
+    <ul id="sugerencias" class="sugerencias" hidden></ul>
+  </form>
+
+  <div id="chips" class="chips"></div>
+
+  <p id="estado" class="estado">Cargando…</p>
+
+  <section id="actual" class="card actual" hidden></section>
+
+  <section id="horasCard" class="card" hidden>
+    <h2>Próximas 24 horas</h2>
+    <div id="horas" class="horas"></div>
+  </section>
+
+  <section id="diasCard" class="card" hidden>
+    <h2>Próximos 7 días</h2>
+    <div id="dias" class="dias"></div>
+  </section>
+
+  <details id="apiCard" class="card api" hidden>
+    <summary>Usar como API</summary>
+    <p>Estas direcciones devuelven el clima en formato JSON y se actualizan cada hora. Podés usarlas desde otras apps con <code>fetch()</code>.</p>
+    <ul id="endpoints"></ul>
+  </details>
+
+  <p class="creditos">Datos: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a></p>
+</main>
+
+<div class="marca-agua" aria-hidden="true">DFF</div>
+
+<dialog id="dlgInstalar">
+  <h2>Instalar la app</h2>
+  <p><strong>iPhone / iPad (Safari):</strong> tocá el botón <em>Compartir</em> ⬆️ y después <em>Agregar a pantalla de inicio</em>.</p>
+  <p><strong>Android (Chrome):</strong> tocá el menú ⋮ y después <em>Instalar app</em> o <em>Agregar a pantalla principal</em>.</p>
+  <p><strong>Computadora (Chrome / Edge):</strong> tocá el ícono de instalar en la barra de direcciones, o menú ⋮ → <em>Instalar ¿Qué tal el clima?</em></p>
+  <form method="dialog"><button class="primario">Entendido</button></form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

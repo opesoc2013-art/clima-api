@@ -1,0 +1,10 @@
+# Ciudades que publica la API (una por línea): Nombre;latitud;longitud
+# Las coordenadas las sacás de Google Maps (clic derecho sobre el lugar).
+Buenos Aires;-34.61;-58.38
+Córdoba;-31.42;-64.18
+Rosario;-32.95;-60.65
+Mendoza;-32.89;-68.83
+La Plata;-34.92;-57.95
+Mar del Plata;-38.00;-57.56
+Salta;-24.79;-65.41
+Bariloche;-41.13;-71.31
