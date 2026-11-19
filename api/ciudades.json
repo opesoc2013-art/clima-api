@@ -1,0 +1,61 @@
+{
+  "generado_utc": "2026-11-19T05:36:22+00:00",
+  "ciudades": [
+    {
+      "ciudad": "Buenos Aires",
+      "slug": "buenos-aires",
+      "latitud": -34.61,
+      "longitud": -58.38,
+      "url": "api/buenos-aires.json"
+    },
+    {
+      "ciudad": "Córdoba",
+      "slug": "cordoba",
+      "latitud": -31.42,
+      "longitud": -64.18,
+      "url": "api/cordoba.json"
+    },
+    {
+      "ciudad": "Rosario",
+      "slug": "rosario",
+      "latitud": -32.95,
+      "longitud": -60.65,
+      "url": "api/rosario.json"
+    },
+    {
+      "ciudad": "Mendoza",
+      "slug": "mendoza",
+      "latitud": -32.89,
+      "longitud": -68.83,
+      "url": "api/mendoza.json"
+    },
+    {
+      "ciudad": "La Plata",
+      "slug": "la-plata",
+      "latitud": -34.92,
+      "longitud": -57.95,
+      "url": "api/la-plata.json"
+    },
+    {
+      "ciudad": "Mar del Plata",
+      "slug": "mar-del-plata",
+      "latitud": -38.0,
+      "longitud": -57.56,
+      "url": "api/mar-del-plata.json"
+    },
+    {
+      "ciudad": "Salta",
+      "slug": "salta",
+      "latitud": -24.79,
+      "longitud": -65.41,
+      "url": "api/salta.json"
+    },
+    {
+      "ciudad": "Bariloche",
+      "slug": "bariloche",
+      "latitud": -41.13,
+      "longitud": -71.31,
+      "url": "api/bariloche.json"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "ciudad": "Buenos Aires",
+  "latitud": -34.61,
+  "longitud": -58.38,
+  "zona_horaria": "America/Argentina/Buenos_Aires",
+  "actualizado": "2026-11-19T02:30",
+  "actual": {
+    "temperatura_c": 17.8,
+    "sensacion_termica_c": 17.3,
+    "humedad_pct": 76,
+    "precipitacion_mm": 0.0,
+    "viento_kmh": 11.3,
+    "viento_direccion_grados": 262,
+    "codigo_clima": 0,
+    "es_de_dia": false
+  },
+  "pronostico": [
+    {
+      "fecha": "2026-11-19",
+      "codigo_clima": 3,
+      "max_c": 26.3,
+      "min_c": 16.1,
+      "lluvia_mm": 0.0,
+      "prob_lluvia_pct": 6,
+      "uv_max": 8.85,
+      "amanecer": "2026-11-19T05:37",
+      "atardecer": "2026-11-19T19:40"
+    },
+    {
+      "fecha": "2026-11-20",
+      "codigo_clima": 55,
+      "max_c": 26.3,
+      "min_c": 19.1,
+      "lluvia_mm": 3.3,
+      "prob_lluvia_pct": 77,
+      "uv_max": 5.85,
+      "amanecer": "2026-11-20T05:37",
+      "atardecer": "2026-11-20T19:41"
+    },
+    {
+      "fecha": "2026-11-21",
+      "codigo_clima": 81,
+      "max_c": 26.1,
+      "min_c": 17.1,
+      "lluvia_mm": 7.3,
+      "prob_lluvia_pct": 85,
+      "uv_max": 8.9,
+      "amanecer": "2026-11-21T05:37",
+      "atardecer": "2026-11-21T19:42"
+    },
+    {
+      "fecha": "2026-11-22",
+      "codigo_clima": 80,
+      "max_c": 24.4,
+      "min_c": 15.6,
+      "lluvia_mm": 2.6,
+      "prob_lluvia_pct": 78,
+      "uv_max": 8.25,
+      "amanecer": "2026-11-22T05:36",
+      "atardecer": "2026-11-22T19:43"
+    },
+    {
+      "fecha": "2026-11-23",
+      "codigo_clima": 3,
+      "max_c": 27.6,
+      "min_c": 17.2,
+      "lluvia_mm": 0.0,
+      "prob_lluvia_pct": 4,
+      "uv_max": 8.95,
+      "amanecer": "2026-11-23T05:36",
+      "atardecer": "2026-11-23T19:44"
+    },
+    {
+      "fecha": "2026-11-24",
+      "codigo_clima": 95,
+      "max_c": 28.1,
+      "min_c": 14.0,
+      "lluvia_mm": 2.6,
+      "prob_lluvia_pct": 37,
+      "uv_max": 8.7,
+      "amanecer": "2026-11-24T05:35",
+      "atardecer": "2026-11-24T19:45"
+    },
+    {
+      "fecha": "2026-11-25",
+      "codigo_clima": 51,
+      "max_c": 23.4,
+      "min_c": 11.8,
+      "lluvia_mm": 0.4,
+      "prob_lluvia_pct": 26,
+      "uv_max": 9.15,
+      "amanecer": "2026-11-25T05:35",
+      "atardecer": "2026-11-25T19:46"
+    }
+  ],
+  "fuente": "Open-Meteo.com"
+}
